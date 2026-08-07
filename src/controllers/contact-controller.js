@@ -12,8 +12,6 @@ async function createMessage(req, res) {
     const values = [name, email, phone, subject, message];
     const [result, fields] = await db.promise().execute(sql, values);
     
-    console.log(result);
-    
     res.status(201).json({
       success: true,
       message: 'Message has sent successfully',
@@ -36,15 +34,12 @@ async function deleteMessage(req, res) {
     const sql = 'delete from messages where id=?';
     const values = [messageID];
     const [result] = await db.promise().execute(sql, values);
-  
-    console.log(result)
-
+      
     res.status(201).json({
       success: true,
       message: 'Message deleted',
-      dataID: result.insertId
     });
-
+    
   } catch (error) {
     res.status(500).json({
       success: false,
@@ -53,7 +48,27 @@ async function deleteMessage(req, res) {
   }
 }
 
+async function readMessage(req, res) {
+  try {
+    const sql = 'select * from messages order by id asc'
+    const [result] = await db.promise().execute(sql);
+    
+    res.status(201).json({
+      success: true,
+      data: result
+    });
+
+  } catch (error) {
+    res.status(500).json({
+      success: false,
+      error: 'Failed to get messages: ' + error,
+    });
+  }
+
+}
+
 module.exports = {
   createMessage,
   deleteMessage,
+  readMessage,
 }
