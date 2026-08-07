@@ -6,7 +6,7 @@ const port = process.env.PORT || 3000;
 
 app.use(express.json());
 
-const contactRouter = require('./src/routes/contact-route')
+const contactRouter = require('./src/routes/contact.route')
 
 app.get('/api', (req, res) => {
   res.json({status: 'Server is healthy :D'})
