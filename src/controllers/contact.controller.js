@@ -1,5 +1,6 @@
 const db = require('../config/database')
 
+// create message
 async function createMessage(req, res) {
   const name = req.body.name;
   const email = req.body.email;
@@ -27,6 +28,7 @@ async function createMessage(req, res) {
   }
 }
 
+// delete message
 async function deleteMessage(req, res) {
   const messageID = req.body.id;
   
@@ -48,6 +50,7 @@ async function deleteMessage(req, res) {
   }
 }
 
+// read message
 async function readMessage(req, res) {
   try {
     const sql = 'select * from messages order by id asc'
