@@ -63,7 +63,26 @@ async function changeStatus(req, res) {
   }
 }
 
+async function myDonations(req, res) {
+  const id = req.user.id
 
+  try {
+   const sql = `select food_name, quantity, pickup_location, status, created_at from donations where provider_id = ? order by created_at desc`
+   const values = id
+   const [result] = await db.promise().execute(sql, values)
+   
+   res.status(201).json({
+    status: true,
+    message: 'Get donation list success!',
+    data: result
+   })
+  } catch (error) {
+    res.status(500).json({
+      status: false,
+      message: 'Failed to get donation list: ' + error
+    })
+  }
+}
 
 module.exports = {
   createDonation,

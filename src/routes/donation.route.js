@@ -7,6 +7,6 @@ const { verifyToken, isAdmin } = require('../middlewares/auth.middleware');
 router.post('/apply', verifyToken, createDonation);
 router.get('/list', verifyToken, isAdmin, getDonations);
 router.post('/status', verifyToken, isAdmin, changeStatus);
-router.get('/mine', verifyToken, getDonations);
+router.get('/history', verifyToken, getDonations);
 
 module.exports = router;
