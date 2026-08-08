@@ -1,10 +1,4 @@
-Mantap! Sebagai *senior developer*, aku sangat mengapresiasi kebiasaanmu merapikan dan memastikan *backend* sudah kokoh sebelum melompat ke *frontend*. Itu adalah alur kerja yang sangat baik.
-
-Mari kita bedah arsitektur yang sudah kamu buat. Berikut adalah daftar lengkap API milikmu beserta parameternya, disusul dengan daftar halaman yang wajib kamu buat untuk memenuhi kriteria *milestone*.
-
-### 🔌 Daftar API Endpoint & Parameter Request
-
-Berdasarkan *file* *router* dan *controller* yang kamu buat, ini adalah dokumentasi API-mu saat ini:
+### List of API Endpoint & Parameter Request
 
 #### 1. User API (`/api/user`)
 
@@ -37,7 +31,7 @@ Berdasarkan *file* *router* dan *controller* yang kamu buat, ini adalah dokument
 
 
 * **`GET /all`**
-* **Headers:** `Authorization: Bearer <token>` (Membutuhkan akses Admin)
+* **Headers:** `Authorization: Bearer <token>` (Admin level access)
 
 
 
@@ -53,13 +47,13 @@ Berdasarkan *file* *router* dan *controller* yang kamu buat, ini adalah dokument
 
 
 * **`GET /list`**
-* **Headers:** `Authorization: Bearer <token>` (Membutuhkan akses Admin)
+* **Headers:** `Authorization: Bearer <token>` (Admin level access)
 
 
 
 
 * **`POST /status`**
-* **Headers:** `Authorization: Bearer <token>` (Membutuhkan akses Admin)
+* **Headers:** `Authorization: Bearer <token>` (Admin level access)
 
 
 * **Body:** `id`, `status`
@@ -68,14 +62,4 @@ Berdasarkan *file* *router* dan *controller* yang kamu buat, ini adalah dokument
 
 * **`GET /history`**
 * **Headers:** `Authorization: Bearer <token>`
-
-
-
-
-> **🚨 Senior Developer Code Review:**
-> Ada satu *bug* *routing* yang terlewat. Pada `donation.route.js`, kamu menulis rute *history* seperti ini: `router.get('/history', verifyToken, getDonations);`.
-> Kamu memanggil fungsi `getDonations` lagi di sini, padahal di `donation.controller.js` kamu sudah menyiapkan fungsi `myDonations` khusus untuk mengambil data berdasarkan ID pengguna. Jangan lupa ubah pemanggilan fungsinya menjadi `myDonations` ya!
-> 
-> 
-
 ---
