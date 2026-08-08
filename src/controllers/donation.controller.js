@@ -68,7 +68,7 @@ async function myDonations(req, res) {
 
   try {
    const sql = `select food_name, quantity, pickup_location, status, created_at from donations where provider_id = ? order by created_at desc`
-   const values = id
+   const values = [id]
    const [result] = await db.promise().execute(sql, values)
    
    res.status(201).json({

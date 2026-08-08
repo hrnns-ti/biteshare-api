@@ -62,6 +62,13 @@ async function signup(req, res) {
   const passwordMatch = req.body.passwordMatch;
 
   try {
+    if (password != passwordMatch) {
+      return res.status(401).json({
+        status: false,
+        message: "Password didn't match, type it again."
+      });
+    }
+
     const salt = 10;
     const hashedPassword = await bcrypt.hash(password, salt);
   

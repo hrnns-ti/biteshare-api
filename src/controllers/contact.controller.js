@@ -53,7 +53,7 @@ async function deleteMessage(req, res) {
 // read message
 async function readMessage(req, res) {
   try {
-    const sql = 'select (name, email, phone, subject, message, created_at) from messages order by id desc'
+    const sql = 'select name, email, phone, subject, message, created_at from messages order by id desc'
     const [result] = await db.promise().execute(sql);
     
     res.status(201).json({
