@@ -8,6 +8,7 @@ app.use(express.json());
 
 const contactRouter = require('./src/routes/contact.route')
 const userRouter = require('./src/routes/user.route')
+const donationRouter = require('./src/routes/donation.route')
 
 app.get('/api', (req, res) => {
   res.json({status: 'Server is healthy :D'})
@@ -15,6 +16,7 @@ app.get('/api', (req, res) => {
 
 app.use('/api/contact', contactRouter);
 app.use('/api/user', userRouter);
+app.use('/api/donation', donationRouter);
 
 app.listen(port, () => {
   console.log(`\nServer running in localhost:${port}`);

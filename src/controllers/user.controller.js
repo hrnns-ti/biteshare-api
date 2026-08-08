@@ -1,5 +1,6 @@
 const db = require('../config/database');
-const bcrypt = require('bcrypt')
+const bcrypt = require('bcrypt');
+const jwt = require('jsonwebtoken');
 
 // sign in
 async function signin(req, res) {
@@ -25,11 +26,24 @@ async function signin(req, res) {
           status: false,
           message: "Email or password didn't match"
       });
-    };  
+    };
+
+    const payload = {
+      id: result[0].id,
+      role: result[0].role
+    };
+
+    const token = jwt.sign(payload, process.env.JWT_PASS, { expiresIn: '1d' })
 
     res.status(200).json({
       status: true,
-      data: result
+      message: 'Sign in success',
+      token: token,
+      data: {
+        id: result[0].id,
+        fullname: result[0].fullname,
+        role: result[0].role
+      }
     });
     
   } catch (error) {
